@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Akhir Annisa Nurfitriyah</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div
+    class="h-screen w-full flex justify-center items-center flex-col gap-y-4"
+    id="app"
+    >
+    <ul v-for="(item, index) in pengusaha.list" :key="index">
+        <li>
+            <span @click="getPengusahaById(item.id)">
+                {{ item.name }} {{ item.company }} {{ item.address }} {{ item.description }}
+            </span>
+            <span
+            class="text-yellow-700 front-medium text-md"
+            @click="deletePengusaha(item.id)"
+            >
+            x
+        </span>
+        </li>
+    </ul>
+
+    <form
+    @submit.prevent="pengusaha.isUpdate ? updatePengusaha() : submitPengusaha()"
+    class="flex flex-col gap-y-2"
+    >
+    <input
+    v-model="pengusaha.name"
+    type="text"
+    placeholder="Masukkan Nama Anda"
+    class="bg-white rounded-lg shadow-md focus:outline-none focus:drop-shadow-md border-2 border-gray-200"
+    />
+    <input
+    v-model="pengusaha.company"
+    type="text"
+    placeholder="Masukkan Nama Perusahaan Anda"
+    class="bg-white rounded-lg shadow-md focus:outline-none focus:drop-shadow-md border-2 border-gray-200"
+    />
+    <input
+    v-model="pengusaha.address"
+    type="text"
+    placeholder="Masukkan Alamat Anda"
+    class="bg-white rounded-lg shadow-md focus:outline-none focus:drop-shadow-md border-2 border-gray-200"
+    />
+    <input
+    v-model="pengusaha.description"
+    type="text"
+    placeholder="Masukkan deskripsi Anda"
+    class="bg-white rounded-lg shadow-md focus:outline-none focus:drop-shadow-md border-2 border-gray-200"
+    />
+    <button
+    class="bg-white border-2 border-orange-300 rounded-lg text-orange-300"
+    type="submit"
+    >
+    {{ pengusaha.isUpdate ? 'Update' : 'Create' }}
+</button>
+</form>
+</div>
+<script src=" ./index.js"></script>
+</body>
+</html>
